@@ -1,4 +1,4 @@
-# Sends a text when a website's content changes.
+# sends a text when a website's content changes.
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from lxml.html.clean import clean_html
@@ -6,16 +6,19 @@ import lxml
 import time
 from twilio.rest import TwilioRestClient
 
+sensitive_list = []
+sensitive = open('sun-sensitive', 'r')
+for line in sensitive:
+	sensitive_list.append(line.rstrip())
 # important fields
-# enter the url of the website you want to monitor below
-url = 'https://www.test.com/'
+url = sensitive_list[0]
 # enter the number the text is being sent to in the "to" field and your twilio number in the "from_" field
 # number are preceded with '+' and then the country code, for example all numbers in the US are precede by '+1'
-personal_number = '+12316851234' 
-twilio_number = '+15555555555'
+personal_number = sensitive_list[1]
+twilio_number = sensitive_list[2]
 # enter your twilio sid and token below (you can sign up for an account here: https://www.twilio.com/)
-account_sid = ''
-auth_token = ''
+account_sid = sensitive_list[3]
+auth_token = sensitive_list[4]
 
 
 client = TwilioRestClient(account_sid, auth_token)
