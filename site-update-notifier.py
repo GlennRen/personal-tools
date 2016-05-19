@@ -37,4 +37,5 @@ while (True):
 	if (init_raw != new_raw):
 		message = client.messages.create(to=personal_number, from_=twilio_number, body="%s was updated!" % url)
 		break
+	print (new_raw)
 	time.sleep(60)
